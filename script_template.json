@@ -1,0 +1,94 @@
+{
+  "_readme": {
+    "说明": "AI短剧流水线模板。JSON 是唯一数据源，提示词由代码用模板拼接，不要手写进镜头里。",
+    "shot_type 可选值": ["wide", "full", "medium", "close_up", "extreme_close_up"],
+    "status 可选值": ["pending", "running", "done", "failed"],
+    "使用方法": "复制本文件为 projects/<project_id>/script.json，替换所有 <尖括号> 占位内容，再用 Pydantic 或 JSON Schema 校验。"
+  },
+
+  "project": {
+    "id": "<project_id，英文短横线，如 the-thousand-afternoons>",
+    "title": "<片名>",
+    "aspect_ratio": "9:16",
+    "target_duration_sec": 70,
+    "style": "<统一画面风格，如：写实电影感，黄昏暖光，浅景深>",
+    "negative": "文字乱码, 多余手指, 变形, 模糊",
+    "language": "zh-CN"
+  },
+
+  "characters": {
+    "<角色key_1，如 linyuan>": {
+      "name": "<角色名>",
+      "appearance": "<固定外貌描述：年龄、性别、发型、体型、肤色、五官特征。全片原样复用，不要改措辞>",
+      "outfit": "<固定服装与道具描述>",
+      "voice": "<TTS 音色ID>",
+      "ref_image": "assets/chars/<角色key_1>.png"
+    },
+    "<角色key_2，如 coach>": {
+      "name": "<角色名>",
+      "appearance": "<固定外貌描述>",
+      "outfit": "<固定服装与道具描述>",
+      "voice": "<TTS 音色ID>",
+      "ref_image": "assets/chars/<角色key_2>.png"
+    }
+  },
+
+  "scenes": [
+    {
+      "id": "s1",
+      "name": "<场景名，如：每天下午>",
+      "location": "<地点，如：操场>",
+      "time_of_day": "<时间/光线，如：黄昏>",
+      "shots": [
+        {
+          "id": "s1-1",
+          "shot_type": "wide",
+          "characters": ["<角色key_1>"],
+          "action": "<画面中发生了什么，用于生成首帧图>",
+          "motion": "<镜头运动与人物动作，用于图生视频>",
+          "narration": "<旁白，没有则留空字符串>",
+          "dialogue": [],
+          "duration_sec": 5,
+          "status": {
+            "keyframe": "pending",
+            "video": "pending",
+            "audio": "pending"
+          },
+          "outputs": {
+            "keyframe": null,
+            "video": null,
+            "audio": null
+          }
+        },
+        {
+          "id": "s1-2",
+          "shot_type": "medium",
+          "characters": ["<角色key_1>", "<角色key_2>"],
+          "action": "<双人镜头；效果差时可拆成两个单人镜头>",
+          "motion": "<动作描述>",
+          "narration": "",
+          "dialogue": [
+            { "speaker": "<角色key_2>", "text": "<台词>" },
+            { "speaker": "<角色key_1>", "text": "<台词>" }
+          ],
+          "duration_sec": 5,
+          "status": {
+            "keyframe": "pending",
+            "video": "pending",
+            "audio": "pending"
+          },
+          "outputs": {
+            "keyframe": null,
+            "video": null,
+            "audio": null
+          }
+        }
+      ]
+    }
+  ],
+
+  "prompt_templates": {
+    "keyframe": "{style}，{shot_type}，{location}，{time_of_day}，{characters_desc}，{action}",
+    "video": "{motion}，时长{duration_sec}秒"
+  }
+}

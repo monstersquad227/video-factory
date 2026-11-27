@@ -1,0 +1,2 @@
+# common 公共库依赖（被 00-scripts … 05-compose、run.py 复用）
+pydantic>=2.0

@@ -1,0 +1,5 @@
+# step 0 脚本生成依赖（qwen3.6-plus，OpenAI 兼容接口）
+requests>=2.31.0
+python-dotenv>=1.0.0
+# common 包的 schema 校验（见 common/requirements.txt）
+pydantic>=2.0

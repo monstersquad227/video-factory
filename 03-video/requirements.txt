@@ -1,0 +1,7 @@
+# step 4 wan3.0-video 图生视频依赖
+# HTTP 调用与 .env 读取
+requests>=2.31.0
+python-dotenv>=1.0.0
+# 提供 ffmpeg 二进制（把关键帧 PNG 转为无 alpha 的 JPEG 首帧），模块会自动探测。
+# 若已 brew install ffmpeg 装了系统级 ffmpeg，可不装本依赖。
+imageio-ffmpeg>=0.4.9

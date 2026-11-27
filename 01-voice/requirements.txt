@@ -1,0 +1,7 @@
+requests>=2.31.0
+python-dotenv>=1.0.0
+mutagen>=1.47.0
+# 逐 shot 多段音频（旁白+对白）拼接需 ffmpeg；提供自带静态二进制
+imageio-ffmpeg>=0.4.9
+# common 包的 schema 校验
+pydantic>=2.0

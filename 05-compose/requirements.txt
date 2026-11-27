@@ -1,0 +1,4 @@
+# step 7 合成（拼接 + 混音 + 烧字幕）依赖
+# 提供 ffmpeg 二进制（含 libx264 / libass 字幕 / 混音滤镜），模块会自动探测。
+# 若已用 brew install ffmpeg 装了系统级 ffmpeg，可不装本依赖。
+imageio-ffmpeg>=0.4.9
